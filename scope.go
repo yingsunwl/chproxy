@@ -343,6 +343,8 @@ var allowedParams = []string{
 	"session_id",
 	// session timeout
 	"session_timeout",
+	// format_csv_delimiter
+	"format_csv_delimiter",
 }
 
 // This regexp must match params needed to describe a way to use external data
