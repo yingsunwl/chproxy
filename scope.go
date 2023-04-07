@@ -295,7 +295,12 @@ func (s *scope) killQuery() error {
 	if len(userName) == 0 {
 		userName = defaultUser
 	}
-	req.SetBasicAuth(userName, s.cluster.killQueryUserPassword)
+	password := s.cluster.killQueryUserPassword
+	if len(userName) == 0 {
+		userName = s.clusterUser.name
+		password = s.clusterUser.password
+	}
+	req.SetBasicAuth(userName, password)
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
